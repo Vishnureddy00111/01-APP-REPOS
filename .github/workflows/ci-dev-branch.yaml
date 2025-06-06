@@ -12,4 +12,10 @@ jobs:
       - users: actions/checkout@v4
       - run: |
           echo
-
+  tests:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo
