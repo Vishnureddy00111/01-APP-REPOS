@@ -19,6 +19,7 @@ jobs:
 Dev:
   runs-on: self-hosted
   needs: tests
+  environment: DEV
   steps:
     - uses: actions/checkout@v4
     - run: |
@@ -27,6 +28,7 @@ Dev:
 QA:
     runs-on: self-hosted
     needs: DEV
+    environment: QA
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -35,6 +37,7 @@ QA:
 UAT:
   runs-on: self-hosted
   needs: QA
+  environment: UAT
   steps:
       - uses: actions/checkout@v4
       - run: |
@@ -44,6 +47,7 @@ UAT:
 PRO:
   runs-on: self-hosted
   needs: UAT
+  environment: PROD
   steps:
       - uses: actions/checkout@v4
       - run: |
