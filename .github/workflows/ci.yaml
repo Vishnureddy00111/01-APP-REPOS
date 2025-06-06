@@ -18,15 +18,15 @@ jobs:
 
 Dev:
   runs-on: self-hosted
-  needs:
-   steps:
+  needs: tests
+  steps:
     - uses: actions/checkout@v4
     - run: |
         echo
   
 QA:
     runs-on: self-hosted
-    needs:
+    needs: DEV
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -34,8 +34,8 @@ QA:
 
 UAT:
   runs-on: self-hosted
-  needs:
-    steps:
+  needs: QA
+  steps:
       - uses: actions/checkout@v4
       - run: |
           echo
@@ -43,8 +43,8 @@ UAT:
 
 PRO:
   runs-on: self-hosted
-  needs:
-    steps:
+  needs: PROD
+  steps:
       - uses: actions/checkout@v4
       - run: |
           echo
