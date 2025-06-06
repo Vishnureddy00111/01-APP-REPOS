@@ -17,6 +17,7 @@ jobs:
           echo
 
   Dev:
+#deploy
    runs-on: self-hosted
    needs:
    steps:
