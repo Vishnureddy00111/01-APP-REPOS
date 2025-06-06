@@ -16,11 +16,35 @@ jobs:
       - run: |
           echo
 
-  Dev:
-#deploy
-   runs-on: self-hosted
-   needs:
+Dev:
+  runs-on: self-hosted
+  needs:
    steps:
     - uses: actions/checkout@v4
     - run: |
         echo
+  
+QA:
+    runs-on: self-hosted
+    needs:
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo
+
+UAT:
+  runs-on: self-hosted
+  needs:
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo
+
+
+PRO:
+  runs-on: self-hosted
+  needs:
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo
