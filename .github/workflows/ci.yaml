@@ -5,24 +5,24 @@ on:
       - 'main'
 run-name: ${{ github.sha }} | ${{ github.event.head_commit.message }}
 jobs:
-  build:
-    runs-on: self-hosted
-    steps:
-      - users: actions/checkout@v4
-      - run: |
-          echo
-
+  UNIT-TESTS:
   tests:
    runs-on: self-hosted
    needs: build
    steps:
       - uses: actions/checkout@v4
       - run: |
-          echo
-
+          echo npm test
+  build:
+    runs-on: self-hosted
+    needs: tests
+    steps:
+      - users: actions/checkout@v4
+      - run: |
+          echo docker build
 Dev:
   runs-on: self-hosted
-  needs: tests
+  needs: build
   environment: DEV
   steps:
     - uses: actions/checkout@v4
@@ -37,11 +37,18 @@ QA:
       - uses: actions/checkout@v4
       - run: |
           echo
-
+E2E-TESTS:
+  runs-on: self-hosted
+  needs: build
+  environment: DEV
+  steps:
+    - uses: actions/checkout@v4
+    - run: |
+        echo
 UAT:
   runs-on: self-hosted
   needs: QA
-  environment: UAT
+  environment: E2E-TESTS
   steps:
       - uses: actions/checkout@v4
       - run: |

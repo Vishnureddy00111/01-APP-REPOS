@@ -6,16 +6,5 @@ on:
       - '!master'
 run-name: ${{ github.sha }} | ${{ github.event.head_commit.message }}
 jobs:
-  build:
-    runs-on: self-hosted
-    steps:
-      - users: actions/checkout@v4
-      - run: |
-          echo
-  tests:
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          echo
+  call-workflow-passing-data:
+    uses: tech-spaces/github-reusable-actions/.github/workflows/ci-dev-branch.yml@main
